@@ -3,64 +3,60 @@
 # dependencies = ["matplotlib"]
 # ///
 
-"""
-Read the file in data/, make one picture, save it to out/.
-
-    uv run plot.py
-
-Three parts, and you will replace all three: rows() reads the file the way *your*
-file needs reading, the loop in main() picks the numbers out of it, and the plot at
-the bottom is the transformation you chose. Print before you plot.
-"""
-
 import csv
+from datetime import date
 from pathlib import Path
 
+import matplotlib
+matplotlib.use("Agg")
+
+import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 
-FILE = "hko-daily-mean-temperature-2026.csv"   # CHANGE ME: the same name as in fetch.py
-PICTURE = "plot.png"                           # what goes into out/, and into the README
+from inspect_data import to_minutes
 
-HERE = Path(__file__).parent
-DATA = HERE / "data" / FILE
-OUT = HERE / "out"
+HERE = Path(__file__).resolve().parent
+DATA = HERE / "data" / "hko-sunrise-sunset-2026.csv"
+OUT = HERE / "out" / "daylight-2026.png"
 
 
-def rows(path):
-    """The file as a list of lists, one per line. The Observatory puts three lines
-    of titles above the table and a legend below it, so keep only the lines that
-    start with a year."""
-    kept = []
-    with path.open(encoding="utf-8-sig", newline="") as handle:
-        for line in csv.reader(handle):
-            if line and line[0].isdigit():
-                kept.append(line)
-    return kept
+def load_daylight():
+    """读取日期，并计算每天的白昼小时数。"""
+    days = []
+    hours = []
+
+    with DATA.open(encoding="utf-8-sig", newline="") as file:
+        for row in csv.DictReader(file):
+            day = date.fromisoformat(row["YYYY-MM-DD"])
+            sunrise = to_minutes(row["RISE"])
+            sunset = to_minutes(row["SET"])
+
+            days.append(day)
+            hours.append((sunset - sunrise) / 60)
+
+    return days, hours
 
 
 def main():
-    table = rows(DATA)
-    print(f"{DATA.name}: {len(table)} rows. The first one: {table[0]}")
+    days, hours = load_daylight()
 
-    days, values = [], []
-    for i, (year, month, day, value, quality) in enumerate(table):   # the loop over the numbers
-        if value == "***":                   # the Observatory's word for "missing"
-            continue
-        days.append(i + 1)
-        values.append(float(value))          # it arrived as text; make it a number
-    print(f"{len(values)} values, from {min(values)} to {max(values)}")
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.plot(days, hours)
 
-    fig, ax = plt.subplots(figsize=(10, 4))
-    ax.plot(days, values, color="#d6591d", linewidth=1.5)
-    ax.set_xlabel("day of 2026")
-    ax.set_ylabel("daily mean temperature, °C")
-    ax.set_title("Hong Kong Observatory, 2026 so far")
+    ax.set_title("Hong Kong daylight duration, 2026")
+    ax.set_xlabel("Month")
+    ax.set_ylabel("Daylight duration (hours)")
+    ax.set_xlim(days[0], days[-1])
+
+    ax.xaxis.set_major_locator(mdates.MonthLocator())
+    ax.xaxis.set_major_formatter(mdates.DateFormatter("%b"))
+
     fig.tight_layout()
+    OUT.parent.mkdir(exist_ok=True)
+    fig.savefig(OUT, dpi=150)
+    plt.close(fig)
 
-    OUT.mkdir(exist_ok=True)
-    fig.savefig(OUT / PICTURE, dpi=150)
-    print(f"saved out/{PICTURE}")
-    plt.show()
+    print(f"Saved out/{OUT.name} using {len(days)} daily records.")
 
 
 if __name__ == "__main__":
