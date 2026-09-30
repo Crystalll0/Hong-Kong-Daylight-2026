@@ -27,13 +27,15 @@ The program converts sunrise and sunset to minutes, subtracts sunrise from sunse
 
 ## What the picture shows
 
-The line chart shows daylight increasing towards the middle of the year and decreasing towards the end, ranging from 10 hours 46 minutes to 13 hours 30 minutes—a difference of 2 hours 44 minutes.
+The upper panel shows daily sunrise, solar noon and sunset in Hong Kong time. The pale band between sunrise and sunset represents daylight, while the lower panel shows its duration in hours, ranging from 10 hours 46 minutes to 13 hours 30 minutes.
 
-It shows duration but hides the separate sunrise and sunset times, and it does not represent cloud cover or actual bright sunshine.
+The figure now preserves the separate solar times, but it does not show cloud cover, actual bright sunshine or the effects of buildings and terrain on visibility.
 
 ## Current stage
 
-This is the first plotting version. The next iteration will try to explore showing sunrise, solar noon and sunset alongside the duration curve.
+The second version adds a solar-time panel above the daylight-duration curve. I compared band opacity values of 0.7 and 0.25 and chose the lighter version, 0.25.
+
+The next iteration will explore sky colours and sun icons while keeping the data boundaries clear.
 
 ## Run it
 

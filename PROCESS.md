@@ -16,14 +16,6 @@ Before starting work in this repository, I asked Codex to act as a teacher and p
 
 When errors appeared, I tried to make corrections. But if the problem still remained, I asked Codex to help identify the cause. One problem turned out to be simpler than I expected: I had forgotten to save the edited file before running it...
 
-## 29 September 2026 — Data and the first chart
-
-I downloaded the Hong Kong Observatory's 2026 sunrise, solar transit and sunset CSV. Running the download script again confirmed that it reused the saved file rather than downloading it repeatedly.
-
-I ran the inspection script to check all 365 daily records. The first day's daylight duration was 648 minutes. The shortest duration was 646 minutes, the longest was 810 minutes, and the difference was 164 minutes.
-
-Then I generated a simple line chart using the locally saved data. I committed the data and inspection script before committing the first chart, preserving two separate stages in the repository history.
-
 ## Problems and corrections
 
 Initially, I was still running the template's temperature download script rather than the replacement solar-time script. I corrected the file contents and saved the changes.
@@ -50,3 +42,25 @@ I also adopted the term "daylight duration" rather than "sunshine duration," fol
 The current chart shows how long daylight lasts each day, but does not show sunrise and sunset times separately.
 
 Next, I plan to compare a solar-time panel with the daylight-duration curve and record which design choices I actually keep or reject, along with my reasons.
+
+# Daily Report
+
+## 29 September 2026 — Data and the first chart
+
+I downloaded the Hong Kong Observatory's 2026 sunrise, solar transit and sunset CSV. Running the download script again confirmed that it reused the saved file rather than downloading it repeatedly.
+
+I ran the inspection script to check all 365 daily records. The first day's daylight duration was 648 minutes. The shortest duration was 646 minutes, the longest was 810 minutes, and the difference was 164 minutes.
+
+Then I generated a simple line chart using the locally saved data. I committed the data and inspection script before committing the first chart, preserving two separate stages in the repository history.
+
+## 30 September 2026 — Solar times and opacity comparison
+
+I replaced the single-chart layout with two vertically arranged panels. The upper panel shows sunrise, solar noon and sunset, while the lower panel retains the daylight-duration curve. Both panels share the month axis.
+
+This change addresses a limitation of the first version: it showed how long daylight lasted but did not show the separate sunrise and sunset times. Solar noon uses the published TRAN. values rather than a fixed 12:00.
+
+I ran the updated script and compared BAND_ALPHA values of 0.7 and 0.25. The higher opacity made the daylight area more prominent, while the lower opacity produced a lighter background.
+
+Codex recommended 0.7 to emphasise the daylight band, but I preferred the lighter appearance of 0.25 and kept that version. This makes the filled area less prominent, which is a trade-off I accepted.
+
+The data and calculations were unchanged during the opacity comparison.
