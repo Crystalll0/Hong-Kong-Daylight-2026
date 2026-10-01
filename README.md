@@ -27,15 +27,15 @@ The program converts sunrise and sunset to minutes, subtracts sunrise from sunse
 
 ## What the picture shows
 
-The upper panel shows daily sunrise, solar noon and sunset in Hong Kong time. The pale band between sunrise and sunset represents daylight, while the lower panel shows its duration in hours, ranging from 10 hours 46 minutes to 13 hours 30 minutes.
+The upper panel shows daily sunrise, solar noon and sunset in Hong Kong time, with an illustrative sky gradient following those times. The lower panel shows daylight duration, ranging from 10 hours 46 minutes to 13 hours 30 minutes.
 
-The figure now preserves the separate solar times, but it does not show cloud cover, actual bright sunshine or the effects of buildings and terrain on visibility.
+The colours do not represent measured sky conditions, sunshine intensity or calculated twilight boundaries, and the figure does not account for buildings or terrain blocking the Sun.
 
 ## Current stage
 
-The second version adds a solar-time panel above the daylight-duration curve. I compared band opacity values of 0.7 and 0.25 and chose the lighter version, 0.25.
+The third version adds sun icons and a soft sky gradient while retaining the two-panel layout. I kept the opacity at 0.25 and chose pale gold rather than pale blue around solar noon.
 
-The next iteration will explore sky colours and sun icons while keeping the data boundaries clear.
+The icons identify the three solar-time curves; their positions near the left side do not mark special dates. The next step is to review readability and verify that the project can be reproduced.
 
 ## Run it
 

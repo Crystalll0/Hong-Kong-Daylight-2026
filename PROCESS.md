@@ -43,7 +43,9 @@ The current chart shows how long daylight lasts each day, but does not show sunr
 
 Next, I plan to compare a solar-time panel with the daylight-duration curve and record which design choices I actually keep or reject, along with my reasons.
 
+
 # Daily Report
+
 
 ## 29 September 2026 — Data and the first chart
 
@@ -64,3 +66,15 @@ I ran the updated script and compared BAND_ALPHA values of 0.7 and 0.25. The hig
 Codex recommended 0.7 to emphasise the daylight band, but I preferred the lighter appearance of 0.25 and kept that version. This makes the filled area less prominent, which is a trade-off I accepted.
 
 The data and calculations were unchanged during the opacity comparison.
+
+## 1 October 2026 — Sky colours and sun icons
+
+Today, I wanted to improve the chart's appearance, so I discussed possible changes to the existing code with Codex. And with the help by Codex, I success created the new version with gradient and three sun icons to the solar-time panel to make the table clearer. I retained the daylight-duration curve below it and kept the opacity at 0.25, following my preference from the previous iteration.
+
+The gradient follows the daily sunrise, solar noon and sunset times. The colours and intermediate transitions are design choices, not weather measurements or calculated twilight boundaries.
+
+I compared different color to present the solar noon session. After viewing both versions, I chose to restore the earlier pale-gold version and regenerated the image. I preferred its warmer appearance while keeping the overall colours soft.
+
+During editing, I accidentally entered the colour value in the terminal. It was not a command; it shoulded be belong in plot.py. The final plotting run completed successfully.
+
+This iteration changed the presentation to help distinguish sunrise, solar noon and sunset. It did not change the original data or the calculation of daylight duration.
