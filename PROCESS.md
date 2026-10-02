@@ -78,3 +78,11 @@ I compared different color to present the solar noon session. After viewing both
 During editing, I accidentally entered the colour value in the terminal. It was not a command; it shoulded be belong in plot.py. The final plotting run completed successfully.
 
 This iteration changed the presentation to help distinguish sunrise, solar noon and sunset. It did not change the original data or the calculation of daylight duration.
+
+## 2 October 2026 — Final Version
+
+Today, I reviewed the project before submission. I ran `uv run --offline plot.py` successfully, and the script regenerated the figure using all 365 locally saved daily records. This confirmed that plotting could run without downloading data again, with the required dependencies already installed.
+
+The assignment-check command initially failed because the connection timed out while downloading the checker. I later retried the command, and all automated checks passed. The results confirmed that the README displayed the image, the scripts declared their dependencies, the data and output image were included, and the repository contained six commits across three days.
+
+I also updated the README to describe the final version rather than a planned next iteration. The final figure retains the two-panel layout, sun icons, a pale-gold sky gradient and an opacity of 0.25.

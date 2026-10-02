@@ -31,7 +31,7 @@ The upper panel shows daily sunrise, solar noon and sunset in Hong Kong time, wi
 
 The colours do not represent measured sky conditions, sunshine intensity or calculated twilight boundaries, and the figure does not account for buildings or terrain blocking the Sun.
 
-## Current stage
+## Final version
 
 The third version adds sun icons and a soft sky gradient while retaining the two-panel layout. I kept the opacity at 0.25 and chose pale gold rather than pale blue around solar noon.
 
